@@ -107,6 +107,33 @@ export default function Frame(
     return <div>Loading...</div>;
   }
 
+  const socialLinks = [
+    {
+      name: "Farcaster",
+      url: "https://warpcast.com/bianc8",
+      icon: "🌐"
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/bianc8",
+      icon: "💻"
+    },
+    {
+      name: "Farcaster Royale",
+      url: "https://farcasterroyale.xyz",
+      icon: "🎮"
+    },
+    {
+      name: "AskBrian",
+      url: "https://askbrian.xyz",
+      icon: "🤖"
+    }
+  ];
+
+  const handleLinkClick = (url: string) => {
+    sdk.actions.openUrl(url);
+  };
+
   return (
     <div
       style={{
@@ -118,6 +145,18 @@ export default function Frame(
     >
       <div className="w-[300px] mx-auto py-2 px-2">
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
+        <div className="space-y-2">
+          {socialLinks.map((link, index) => (
+            <PurpleButton
+              key={index}
+              onClick={() => handleLinkClick(link.url)}
+              className="w-full flex items-center justify-between px-4 py-2"
+            >
+              <span>{link.icon} {link.name}</span>
+              <span>➔</span>
+            </PurpleButton>
+          ))}
+        </div>
       </div>
     </div>
   );
